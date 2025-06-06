@@ -165,7 +165,7 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  color: #E0E0E0; /* Ensure text is visible */
+  color: #000000; /* Changed to black for better visibility in forms */
 }
 
 .form-input::placeholder {
