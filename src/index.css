@@ -1,0 +1,236 @@
+/* Added from original index.html */
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+.gradient-bg {
+  background: linear-gradient(-45deg, #0D0D2B, #302B63, #24243E, #8A2BE2, #FF69B4, #302B63);
+  background-size: 600% 600%;
+  animation: gradient-shift 20s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass {
+  background: rgba(48, 43, 99, 0.2); /* Adjusted for new theme */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(138, 43, 226, 0.3); /* BlueViolet accent */
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #8A2BE2 0%, #FF69B4 100%); /* BlueViolet to HotPink */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  mix-blend-mode: multiply; /* Consider 'screen' or 'overlay' for lighter effects if needed */
+  animation: blob 7s infinite alternate; /* Changed to alternate for smoother looping */
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+  33% { transform: translate(30px, -50px) scale(1.1); opacity: 0.5; }
+  66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.4; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.6; }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #8A2BE2; /* BlueViolet */
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #8A2BE2; } /* BlueViolet */
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: particle-float 3s infinite ease-in-out;
+  pointer-events: none; /* Ensure particles don't interfere with interactions */
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(-100px) rotate(180deg); opacity: 0; }
+}
+
+.skill-bar {
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 10px; /* Slightly thicker */
+  background: linear-gradient(90deg, #8A2BE2, #FF69B4); /* BlueViolet to HotPink */
+  border-radius: 10px;
+  transition: width 2s ease-in-out;
+}
+
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Adjusted position */
+  left: 0;
+  width: 0;
+  height: 3px; /* Thicker underline */
+  background: linear-gradient(90deg, #8A2BE2, #FF69B4); /* BlueViolet to HotPink */
+  transition: width 0.4s ease-out; /* Smoother transition */
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+.project-overlay {
+  /* background: linear-gradient(45deg, rgba(138, 43, 226, 0.85), rgba(255, 105, 180, 0.85)); */ /* Original, can be uncommented if preferred */
+  /* Updated for better text visibility, this is applied in Projects.jsx directly for now */
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Added opacity transition */
+  opacity: 0; /* Start hidden */
+}
+
+.group:hover .project-overlay {
+  transform: translateY(0);
+  opacity: 1; /* Become visible on hover */
+}
+
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px; /* Thicker */
+  background: linear-gradient(90deg, #8A2BE2, #FF69B4); /* BlueViolet to HotPink */
+  transform-origin: left;
+  z-index: 9999;
+  transition: transform 0.1s linear; /* Smooth out the transform */
+}
+
+.contact-form {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  color: #E0E0E0; /* Ensure text is visible */
+}
+
+.form-input::placeholder {
+  color: rgba(224, 224, 224, 0.6); /* Lighter placeholder text */
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #8A2BE2; /* BlueViolet */
+  outline: none;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4); /* BlueViolet glow */
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { box-shadow: 0 0 25px rgba(138, 43, 226, 0.6); } /* BlueViolet */
+  to { box-shadow: 0 0 40px rgba(255, 105, 180, 0.7); } /* HotPink */
+}
+
+.social-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.social-icon:hover::before {
+  left: 100%;
+}
+
+.footer-gradient {
+  background: linear-gradient(135deg, #0D0D2B 0%, #1A1A3F 50%, #24243E 100%); /* Darker, consistent theme */
+}
+
+.testimonial-card {
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 105, 180, 0.1)); /* BlueViolet to HotPink */
+  border: 1px solid rgba(138, 43, 226, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+.mobile-menu {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 100; /* Ensure mobile menu is on top */
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+body {
+  /* These are already set in :root or inherited, but explicitly setting for body from original */
+  background-color: #0D0D2B; 
+  color: #E0E0E0;
+  overflow-x: hidden;
+}
