@@ -1,10 +1,22 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Calendar, Star, Zap, Trophy, Code, Eye } from 'lucide-react';
 import HTMLFlipBook from 'react-pageflip';
 
 const Projects = () => {
   const bookRef = useRef();
   const [currentPage, setCurrentPage] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const projectData = [
     {
@@ -244,140 +256,241 @@ const Projects = () => {
             <Star className="w-4 h-4 mr-2 text-yellow-500" />
             Featured Projects Portfolio
           </div>
-          <h2 className="text-6xl font-bold mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
               Project Showcase
             </span>
           </h2>
           <div className="w-40 h-1.5 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-8 shadow-lg"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto text-xl leading-relaxed">
-            Discover my carefully crafted digital experiences through this interactive portfolio notebook
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+            {isMobile 
+              ? "Explore my carefully crafted digital experiences in this mobile-friendly showcase"
+              : "Discover my carefully crafted digital experiences through this interactive portfolio notebook"
+            }
           </p>
         </div>
 
-        {/* Book Container */}
-        <div className="max-w-7xl mx-auto relative">
-          <div className="flex justify-center">
-            <div className="relative">
-              {/* Book Shadow */}
-              <div className="absolute inset-0 bg-black/10 blur-xl transform translate-y-4 scale-95 rounded-2xl"></div>
+        {isMobile ? (
+          /* Mobile Grid Layout */
+          <div className="max-w-sm mx-auto space-y-6">
+            {projectData.map((project, index) => {
+              const statusConfig = getStatusConfig(project.status);
               
-              <HTMLFlipBook
-                width={550}
-                height={633}
-                size="stretch"
-                minWidth={515}
-                maxWidth={600}
-                minHeight={400}
-                maxHeight={1033}
-                maxShadowOpacity={0.5}
-                showCover={false}
-                mobileScrollSupport={true}
-                onFlip={onPageChange}
-                className="demo-book"
-                ref={bookRef}
-                startPage={1}
-                flippingTime={1000}
-                usePortrait={false}
-                startZIndex={0}
-                autoSize={true}
-                clickEventForward={false}
-                useMouseEvents={true}
-                swipeDistance={0}
-                showPageCorners={true}
-                disableFlipByClick={false}
-                style={{
-                  margin: '0 auto',
-                  width: '100%',
-                  height: '100%',
-                }}
-              >
-                {/* Project Pages */}
-                {projectData.map((project, index) => (
-                  <div key={index} className="h-full w-full">
-                    <ProjectPage project={project} />
+              return (
+                <div key={index} className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative group">
+                  {/* Decorative Elements */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent opacity-60"></div>
+                  <div className={`absolute top-4 left-4 w-16 h-16 bg-gradient-to-br ${project.gradient} opacity-10 rounded-full blur-xl`}></div>
+                  
+                  {/* Project Image Header */}
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-900/20 to-gray-900/40 z-10"></div>
+                    <img 
+                      src={project.imageUrl} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-80 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-70`}></div>
+                    
+                    {/* Status Badge */}
+                    <div className="absolute top-4 right-4 z-20">
+                      <div className={`flex items-center px-3 py-1.5 rounded-xl text-xs font-bold border backdrop-blur-md ${statusConfig.color} ${statusConfig.glow} shadow-lg`}>
+                        {statusConfig.icon}
+                        <span className="ml-1.5">{project.status}</span>
+                      </div>
+                    </div>
+
+                    {/* Title Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                      <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg tracking-tight">
+                        {project.title}
+                      </h3>
+                      <div className="flex items-center text-white/90 text-sm font-medium">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        {project.date}
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Content Section */}
+                  <div className="p-4">
+                    {/* Description */}
+                    <div className="mb-4">
+                      <p className="text-gray-700 leading-relaxed text-sm font-medium">
+                        {project.description}
+                      </p>
+                    </div>
+                    
+                    {/* Tech Stack */}
+                    <div className="mb-4">
+                      <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 flex items-center">
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${project.gradient} mr-2`}></div>
+                        Tech Stack
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <span 
+                            key={tagIndex}
+                            className={`px-2 py-1 bg-gradient-to-r ${project.gradient} bg-opacity-10 text-gray-800 rounded-lg text-xs font-semibold border border-gray-100`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="pt-4 border-t border-gray-100">
+                      <div className="flex space-x-3">
+                        <a 
+                          href={project.liveLink}
+                          className={`flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r ${project.gradient} text-white rounded-xl hover:shadow-lg transition-all duration-300 text-sm font-bold`}
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Live Demo
+                        </a>
+                        <a 
+                          href={project.codeLink}
+                          className="flex-1 flex items-center justify-center px-4 py-3 border-2 border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 text-sm font-bold"
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          Code
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          /* Desktop Flipbook Layout */
+          <div className="max-w-7xl mx-auto relative">
+            <div className="flex justify-center">
+              <div className="relative">
+                {/* Book Shadow */}
+                <div className="absolute inset-0 bg-black/10 blur-xl transform translate-y-4 scale-95 rounded-2xl"></div>
+                
+                <HTMLFlipBook
+                  width={550}
+                  height={633}
+                  size="stretch"
+                  minWidth={515}
+                  maxWidth={600}
+                  minHeight={400}
+                  maxHeight={1033}
+                  maxShadowOpacity={0.5}
+                  showCover={false}
+                  mobileScrollSupport={true}
+                  onFlip={onPageChange}
+                  className="demo-book"
+                  ref={bookRef}
+                  startPage={1}
+                  flippingTime={1000}
+                  usePortrait={false}
+                  startZIndex={0}
+                  autoSize={true}
+                  clickEventForward={false}
+                  useMouseEvents={true}
+                  swipeDistance={0}
+                  showPageCorners={true}
+                  disableFlipByClick={false}
+                  style={{
+                    margin: '0 auto',
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  {/* Project Pages */}
+                  {projectData.map((project, index) => (
+                    <div key={index} className="h-full w-full">
+                      <ProjectPage project={project} />
+                    </div>
+                  ))}
+                </HTMLFlipBook>
+              </div>
+            </div>
+
+            {/* Enhanced Navigation */}
+            <div className="flex justify-center items-center mt-12 space-x-8">
+              <button
+                onClick={prevPage}
+                className="flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white border border-gray-100 font-medium"
+              >
+                <ChevronLeft className="w-6 h-6 mr-2" />
+                Previous
+              </button>
+              
+              <div className="flex space-x-3">
+                {[...Array(Math.ceil(projectData.length / 2))].map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => bookRef.current && bookRef.current.pageFlip().flip(index * 2)}
+                    className={`h-3 rounded-full transition-all duration-300 ${
+                      index === Math.floor((currentPage - 1) / 2)
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 w-12 shadow-lg' 
+                        : 'bg-gray-300 hover:bg-gray-400 w-3 hover:scale-125'
+                    }`}
+                  />
                 ))}
-              </HTMLFlipBook>
+              </div>
+              
+              <button
+                onClick={nextPage}
+                className="flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white border border-gray-100 font-medium"
+              >
+                Next
+                <ChevronRight className="w-6 h-6 ml-2" />
+              </button>
+            </div>
+
+            {/* Enhanced Page Counter */}
+            <div className="text-center mt-6">
+              <span className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-gray-600 text-sm font-medium shadow-lg">
+                Spread {Math.floor((currentPage - 1) / 2) + 1} of {Math.ceil(projectData.length / 2)}
+              </span>
             </div>
           </div>
-
-          {/* Enhanced Navigation */}
-          <div className="flex justify-center items-center mt-12 space-x-8">
-            <button
-              onClick={prevPage}
-              className="flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white border border-gray-100 font-medium"
-            >
-              <ChevronLeft className="w-6 h-6 mr-2" />
-              Previous
-            </button>
-            
-            <div className="flex space-x-3">
-              {[...Array(Math.ceil(projectData.length / 2))].map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => bookRef.current && bookRef.current.pageFlip().flip(index * 2)}
-                  className={`h-3 rounded-full transition-all duration-300 ${
-                    index === Math.floor((currentPage - 1) / 2)
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 w-12 shadow-lg' 
-                      : 'bg-gray-300 hover:bg-gray-400 w-3 hover:scale-125'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <button
-              onClick={nextPage}
-              className="flex items-center px-8 py-4 bg-white/90 backdrop-blur-sm text-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-white border border-gray-100 font-medium"
-            >
-              Next
-              <ChevronRight className="w-6 h-6 ml-2" />
-            </button>
-          </div>
-
-          {/* Enhanced Page Counter */}
-          <div className="text-center mt-6">
-            <span className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full text-gray-600 text-sm font-medium shadow-lg">
-              Spread {Math.floor((currentPage - 1) / 2) + 1} of {Math.ceil(projectData.length / 2)}
-            </span>
-          </div>
-        </div>
+        )}
       </div>
 
-      <style jsx>{`
-        .demo-book {
-          margin: 0 auto;
-        }
-        .demo-book > div {
-          background: white;
-          border-radius: 1rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        .page {
-          background: white;
-          border-radius: 1rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-          overflow: hidden;
-        }
-        .page-wrapper {
-          padding: 0;
-          background: white;
-          border-radius: 1rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        .page-wrapper.animated {
-          transition: transform 0.6s;
-          transform-origin: left center;
-        }
-        .page-wrapper.animated.turned {
-          transform: rotateY(-180deg);
-        }
-        .page-wrapper.animated.turned .page {
-          transform: rotateY(180deg);
-        }
-      `}</style>
+      {!isMobile && (
+        <style jsx>{`
+          .demo-book {
+            margin: 0 auto;
+          }
+          .demo-book > div {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          }
+          .page {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+          }
+          .page-wrapper {
+            padding: 0;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          }
+          .page-wrapper.animated {
+            transition: transform 0.6s;
+            transform-origin: left center;
+          }
+          .page-wrapper.animated.turned {
+            transform: rotateY(-180deg);
+          }
+          .page-wrapper.animated.turned .page {
+            transform: rotateY(180deg);
+          }
+        `}
+      </style>
+      )}
     </section>
   );
-};
+}
 
 export default Projects;
