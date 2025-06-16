@@ -3,6 +3,60 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* Theme Variables */
+:root {
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-muted: #94a3b8;
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme - Enhanced for Attractive UI */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111121;
+  --bg-tertiary: #1a1a2e;
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-tertiary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-primary: #2a2a3a;
+  --border-secondary: #3a3a4a;
+  --glass-bg: rgba(16, 16, 30, 0.85);
+  --glass-border: rgba(138, 43, 226, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --navbar-bg: rgba(10, 10, 15, 0.95);
+  --card-bg: rgba(16, 16, 30, 0.6);
+  
+  /* Dark theme specific gradients */
+  --dark-gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --dark-gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --dark-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --dark-accent-glow: rgba(138, 43, 226, 0.4);
+  --dark-secondary-glow: rgba(255, 105, 180, 0.3);
+  --dark-navbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --dark-sidebar-bg: rgba(10, 10, 15, 0.98);
+  --dark-sidebar-blur: blur(25px);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
 .gradient-bg {
   background: linear-gradient(-45deg, #0D0D2B, #302B63, #24243E, #8A2BE2, #FF69B4, #302B63);
   background-size: 600% 600%;
@@ -228,9 +282,4 @@
   transform: translateX(0);
 }
 
-body {
-  /* These are already set in :root or inherited, but explicitly setting for body from original */
-  background-color: #0D0D2B; 
-  color: #E0E0E0;
-  overflow-x: hidden;
-}
+/* Remove duplicate body styles - use theme variables instead */

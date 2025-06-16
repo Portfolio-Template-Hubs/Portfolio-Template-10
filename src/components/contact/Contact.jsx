@@ -139,7 +139,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-100 min-h-screen">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden" style={{ background: `linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary), var(--bg-secondary))` }}>
       {/* Enhanced Dynamic Animated Background Elements */}
       {particles.map(particle => (
         <motion.div 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="py-16 md:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-20 relative overflow-hidden" style={{ background: `linear-gradient(135deg, var(--bg-secondary), var(--bg-primary), var(--bg-secondary))` }}>
       {/* Refined Background Elements */}
       <div className="absolute -top-32 -right-32 w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full opacity-20 blur-3xl animate-pulse"></div>
       <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-full opacity-20 blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>

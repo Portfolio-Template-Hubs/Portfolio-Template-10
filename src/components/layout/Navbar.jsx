@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Navbar = () => {
+  const { theme, changeTheme, isDark } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
-  const [currentTheme, setCurrentTheme] = useState('light');
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -22,10 +23,9 @@ const Navbar = () => {
     setIsThemeMenuOpen(!isThemeMenuOpen);
   };
 
-  const changeTheme = (theme) => {
-    setCurrentTheme(theme);
+  const handleThemeChange = (newTheme) => {
+    changeTheme(newTheme);
     setIsThemeMenuOpen(false);
-    // You can add theme application logic here
   };
 
   useEffect(() => {
@@ -192,7 +192,91 @@ const Navbar = () => {
         }
         
         .nav-shadow {
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 32px var(--shadow-color);
+        }
+        
+        /* Dark theme navbar enhancements */
+        [data-theme="dark"] .nav-shadow {
+          box-shadow: var(--dark-navbar-shadow);
+        }
+        
+        [data-theme="dark"] .nav-blur {
+          backdrop-filter: var(--dark-sidebar-blur);
+          -webkit-backdrop-filter: var(--dark-sidebar-blur);
+        }
+        
+        /* Dark theme navbar background */
+        [data-theme="dark"] .dark-navbar-bg {
+          background: linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
+          border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        /* Dark theme sidebar */
+        [data-theme="dark"] .dark-sidebar {
+          background: var(--dark-sidebar-bg);
+          border-left: 1px solid rgba(138, 43, 226, 0.3);
+          box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Dark theme text colors */
+        [data-theme="dark"] .dark-text-primary {
+          color: var(--text-primary);
+        }
+        
+        [data-theme="dark"] .dark-text-secondary {
+          color: var(--text-secondary);
+        }
+        
+        /* Dark theme buttons */
+        [data-theme="dark"] .dark-button {
+          color: var(--text-secondary);
+        }
+        
+        [data-theme="dark"] .dark-button:hover {
+          color: #8b5cf6;
+          background: rgba(138, 43, 226, 0.1);
+        }
+        
+        /* Dark theme active states */
+        [data-theme="dark"] .dark-active {
+          background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.1));
+          border-left: 4px solid #8b5cf6;
+          color: #e2e8f0;
+        }
+        
+        /* Dark theme quick actions */
+        [data-theme="dark"] .dark-quick-action {
+          background: rgba(138, 43, 226, 0.1);
+          border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        [data-theme="dark"] .dark-quick-action:hover {
+          background: rgba(138, 43, 226, 0.2);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Dark theme social buttons */
+        [data-theme="dark"] .dark-social {
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .dark-social:hover {
+          background: rgba(138, 43, 226, 0.2);
+          border-color: rgba(138, 43, 226, 0.4);
+          box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Dark theme recent activity */
+        [data-theme="dark"] .dark-activity {
+          background: rgba(16, 16, 30, 0.6);
+          border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        [data-theme="dark"] .dark-activity:hover {
+          background: rgba(138, 43, 226, 0.1);
+          border-color: rgba(138, 43, 226, 0.2);
         }
         
         .nav-link {
@@ -362,10 +446,14 @@ const Navbar = () => {
       <nav 
         className={`fixed w-full top-0 z-50 transition-all duration-500 ease-out slide-down
                     ${isScrolled 
-                      ? 'bg-white/80 nav-blur nav-shadow border-b border-white/20' 
+                      ? 'nav-blur nav-shadow border-b dark-navbar-bg' 
                       : 'bg-transparent'
                     }
-                    ${isMobileMenuOpen ? 'bg-white/90 nav-blur nav-shadow' : ''}`}
+                    ${isMobileMenuOpen ? 'nav-blur nav-shadow dark-navbar-bg' : ''}`}
+        style={{
+          backgroundColor: isScrolled || isMobileMenuOpen ? 'var(--navbar-bg)' : 'transparent',
+          borderColor: isScrolled || isMobileMenuOpen ? 'var(--border-primary)' : 'transparent'
+        }}
       >
         <div className="container mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-20">
@@ -406,16 +494,16 @@ const Navbar = () => {
                       { name: 'Light', value: 'light', icon: 'fas fa-sun', color: 'text-yellow-500' },
                       { name: 'Dark', value: 'dark', icon: 'fas fa-moon', color: 'text-indigo-500' },
                       { name: 'Auto', value: 'auto', icon: 'fas fa-adjust', color: 'text-gray-500' }
-                    ].map((theme) => (
+                    ].map((themeOption) => (
                       <button
-                        key={theme.value}
-                        onClick={() => changeTheme(theme.value)}
+                        key={themeOption.value}
+                        onClick={() => handleThemeChange(themeOption.value)}
                         className={`w-full flex items-center px-4 py-3 text-sm hover:bg-gray-50 transition-colors duration-200
-                                    ${currentTheme === theme.value ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700'}`}
+                                    ${theme === themeOption.value ? 'text-indigo-600 bg-indigo-50' : 'text-gray-700'}`}
                       >
-                        <i className={`${theme.icon} ${theme.color} mr-3`}></i>
-                        <span>{theme.name}</span>
-                        {currentTheme === theme.value && (
+                        <i className={`${themeOption.icon} ${themeOption.color} mr-3`}></i>
+                        <span>{themeOption.name}</span>
+                        {theme === themeOption.value && (
                           <i className="fas fa-check ml-auto text-indigo-600"></i>
                         )}
                       </button>
@@ -462,13 +550,13 @@ const Navbar = () => {
         {/* Enhanced Sidebar */}
         <div 
           data-sidebar
-          className={`fixed top-0 right-0 h-screen w-80 bg-white/95 backdrop-blur-xl shadow-2xl border-l border-gray-200 transition-transform duration-500 ease-out z-50
+          className={`fixed top-0 right-0 h-screen w-80 bg-white/95 backdrop-blur-xl shadow-2xl border-l border-gray-200 transition-transform duration-500 ease-out z-50 dark-sidebar
                       ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           {/* Sidebar Header */}
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent dark-text-primary">
                 Quick Access
               </h3>
               <button 
@@ -484,16 +572,16 @@ const Navbar = () => {
           <div className="p-6 space-y-6 overflow-y-auto h-full pb-20">
             {/* Navigation Links */}
             <div>
-              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Navigation</h4>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3 dark-text-secondary">Navigation</h4>
               <div className="space-y-2">
                 {navLinks.map((link, index) => (
                   <a 
                     key={link.href}
                     href={link.href}
                     onClick={toggleSidebar}
-                    className={`flex items-center px-4 py-3 rounded-lg transition-all duration-300 group hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:scale-105
+                    className={`flex items-center px-4 py-3 rounded-lg transition-all duration-300 group hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:scale-105 dark-button
                                 ${activeSection === link.href.slice(1) 
-                                  ? 'bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 border-l-4 border-indigo-600' 
+                                  ? 'bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 border-l-4 border-indigo-600 dark-active' 
                                   : 'text-gray-700 hover:text-indigo-600'
                                 }`}
                   >
@@ -507,23 +595,23 @@ const Navbar = () => {
             
             {/* Quick Actions */}
             <div>
-              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Quick Actions</h4>
+              <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3 dark-text-secondary">Quick Actions</h4>
               <div className="grid grid-cols-2 gap-3">
-                <button className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group">
+                <button className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all duration-300 group dark-quick-action">
                   <i className="fas fa-download text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-                  <p className="text-sm font-medium text-blue-700">Download CV</p>
+                  <p className="text-sm font-medium text-blue-700 dark-text-secondary">Download CV</p>
                 </button>
-                <button className="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg hover:from-green-100 hover:to-green-200 transition-all duration-300 group">
+                <button className="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg hover:from-green-100 hover:to-green-200 transition-all duration-300 group dark-quick-action">
                   <i className="fas fa-phone text-green-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-                  <p className="text-sm font-medium text-green-700">Call Me</p>
+                  <p className="text-sm font-medium text-green-700 dark-text-secondary">Call Me</p>
                 </button>
-                <button className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg hover:from-purple-100 hover:to-purple-200 transition-all duration-300 group">
+                <button className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg hover:from-purple-100 hover:to-purple-200 transition-all duration-300 group dark-quick-action">
                   <i className="fas fa-share-alt text-purple-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-                  <p className="text-sm font-medium text-purple-700">Share</p>
+                  <p className="text-sm font-medium text-purple-700 dark-text-secondary">Share</p>
                 </button>
-                <button className="p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg hover:from-pink-100 hover:to-pink-200 transition-all duration-300 group">
+                <button className="p-4 bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg hover:from-pink-100 hover:to-pink-200 transition-all duration-300 group dark-quick-action">
                   <i className="fas fa-bookmark text-pink-600 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-                  <p className="text-sm font-medium text-pink-700">Bookmark</p>
+                  <p className="text-sm font-medium text-pink-700 dark-text-secondary">Bookmark</p>
                 </button>
               </div>
             </div>
@@ -540,7 +628,7 @@ const Navbar = () => {
                 ].map((social, index) => (
                   <button 
                     key={index}
-                    className={`p-3 rounded-full ${social.bg} ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg`}
+                    className={`p-3 rounded-full ${social.bg} ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg dark-social`}
                   >
                     <i className={`${social.icon} text-lg`}></i>
                   </button>
@@ -556,18 +644,18 @@ const Navbar = () => {
                   { name: 'Light', value: 'light', icon: 'fas fa-sun', color: 'text-yellow-500', bg: 'bg-yellow-50' },
                   { name: 'Dark', value: 'dark', icon: 'fas fa-moon', color: 'text-indigo-500', bg: 'bg-indigo-50' },
                   { name: 'Auto', value: 'auto', icon: 'fas fa-adjust', color: 'text-gray-500', bg: 'bg-gray-50' }
-                ].map((theme) => (
+                ].map((themeOption) => (
                   <button
-                    key={theme.value}
-                    onClick={() => changeTheme(theme.value)}
+                    key={themeOption.value}
+                    onClick={() => changeTheme(themeOption.value)}
                     className={`p-3 rounded-lg transition-all duration-300 hover:scale-105 border-2
-                                ${currentTheme === theme.value 
-                                  ? `${theme.bg} border-current ${theme.color}` 
+                                ${theme === themeOption.value 
+                                  ? `${themeOption.bg} border-current ${themeOption.color}` 
                                   : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                                 }`}
                   >
-                    <i className={`${theme.icon} text-lg mb-1`}></i>
-                    <p className="text-xs font-medium">{theme.name}</p>
+                    <i className={`${themeOption.icon} text-lg mb-1`}></i>
+                    <p className="text-xs font-medium">{themeOption.name}</p>
                   </button>
                 ))}
               </div>
@@ -582,7 +670,7 @@ const Navbar = () => {
                   { action: 'New Project Added', time: '1 day ago', icon: 'fas fa-plus-circle' },
                   { action: 'Skills Updated', time: '3 days ago', icon: 'fas fa-wrench' }
                 ].map((activity, index) => (
-                  <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                  <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300 dark-activity">
                     <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
                       <i className={`${activity.icon} text-indigo-600 text-xs`}></i>
                     </div>

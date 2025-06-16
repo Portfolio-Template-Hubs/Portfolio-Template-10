@@ -62,7 +62,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+    <section id="skills" className="py-20 md:py-32 relative overflow-hidden" style={{ background: `linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary), var(--bg-secondary))` }}>
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>

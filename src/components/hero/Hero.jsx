@@ -110,18 +110,18 @@ const Hero = () => {
         }
         
         .glass-card {
-          background: rgba(255, 255, 255, 0.8);
+          background: var(--glass-bg);
           backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          border: 1px solid var(--glass-border);
           border-radius: 16px;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 8px 32px var(--shadow-color);
           transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-          background: rgba(255, 255, 255, 0.9);
-          border-color: rgba(255, 255, 255, 0.5);
-          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+          background: var(--bg-secondary);
+          border-color: var(--border-primary);
+          box-shadow: 0 12px 40px var(--shadow-color);
           transform: translateY(-2px);
         }
         

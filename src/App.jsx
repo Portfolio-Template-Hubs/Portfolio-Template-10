@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/hero/Hero';
 import About from './components/about/About';
@@ -7,7 +8,7 @@ import Skills from './components/skills/Skills';
 import Projects from './components/projects/Projects';
 import TimelineJourney from './components/journey/TimelineJourney';
 import Testimonials from './components/testimonials/Testimonials';
-import Services from './components/services/Services'; // Added import for Services
+import Services from './components/services/Services';
 import Contact from './components/contact/Contact';
 import Awards from './components/awards/Awards';
 import Footer from './components/footer/Footer';
@@ -28,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <ThemeProvider>
       <div 
         id="scrollIndicator"
         className="scroll-indicator" 
@@ -43,11 +44,11 @@ function App() {
         <TimelineJourney />
         <Awards />
         <Testimonials />
-        <Services /> {/* Added Services component */}
+        <Services />
         <Contact />
       </main>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 }
 
