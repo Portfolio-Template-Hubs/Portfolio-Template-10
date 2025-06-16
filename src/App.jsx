@@ -5,6 +5,7 @@ import Hero from './components/hero/Hero';
 import About from './components/about/About';
 import Skills from './components/skills/Skills';
 import Projects from './components/projects/Projects';
+import TimelineJourney from './components/journey/TimelineJourney';
 import Testimonials from './components/testimonials/Testimonials';
 import Services from './components/services/Services'; // Added import for Services
 import Contact from './components/contact/Contact';
@@ -38,10 +39,10 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <TimelineJourney />
         <Testimonials />
         <Services /> {/* Added Services component */}
         <Contact />
-        {/* Testimonials section would go here if it existed */}
       </main>
       <Footer />
     </>
