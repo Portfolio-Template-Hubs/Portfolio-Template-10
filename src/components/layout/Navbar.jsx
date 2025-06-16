@@ -33,21 +33,50 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'contact', 'testimonials'];
-      const scrollPosition = window.scrollY + 100;
+      const sections = ['home', 'about', 'skills', 'projects', 'journey', 'awards', 'testimonials', 'services', 'contact'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2; // Use middle of viewport
       
+      let foundActiveSection = 'home'; // Default fallback
+      let closestSection = null;
+      let closestDistance = Infinity;
+      
+      // Find the section that's closest to the center of the viewport
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+          const rect = element.getBoundingClientRect();
+          const elementTop = window.scrollY + rect.top;
+          const elementBottom = elementTop + rect.height;
+          const elementCenter = elementTop + rect.height / 2;
+          
+          // Calculate distance from viewport center to section center
+          const distance = Math.abs(scrollPosition - elementCenter);
+          
+          // If section is in viewport and closest so far
+          if (distance < closestDistance && rect.bottom > 0 && rect.top < window.innerHeight) {
+            closestDistance = distance;
+            closestSection = section;
+          }
+          
+          // Also check if scroll position is within section bounds (primary method)
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            foundActiveSection = section;
             break;
           }
         }
       }
+      
+      // Use closest section if no section contains the scroll position
+      if (foundActiveSection === 'home' && closestSection) {
+        foundActiveSection = closestSection;
+      }
+      
+      setActiveSection(foundActiveSection);
     };
 
+    // Run on mount to set initial active section
+    setTimeout(handleScroll, 100); // Small delay to ensure DOM is ready
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -58,14 +87,40 @@ const Navbar = () => {
       const href = e.currentTarget.getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
+        const sectionName = href.slice(1);
+        
+        // Immediately set active section for better UX
+        setActiveSection(sectionName);
+        
         const targetElement = document.querySelector(href);
         if (targetElement) {
           targetElement.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
           });
+          
+          // Re-run scroll detection after scroll completes
+          setTimeout(() => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            const sections = ['home', 'about', 'skills', 'projects', 'journey', 'awards', 'testimonials', 'services', 'contact'];
+            
+            for (const section of sections) {
+              const element = document.getElementById(section);
+              if (element) {
+                const rect = element.getBoundingClientRect();
+                const elementTop = window.scrollY + rect.top;
+                const elementBottom = elementTop + rect.height;
+                
+                if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+                  setActiveSection(section);
+                  break;
+                }
+              }
+            }
+          }, 1000); // Wait for smooth scroll to complete
         }
         setIsMobileMenuOpen(false);
+        setIsSidebarOpen(false);
       }
     };
 
@@ -80,13 +135,52 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isSidebarOpen) {
+        const sidebar = document.querySelector('[data-sidebar]');
+        const sidebarToggle = document.querySelector('[data-sidebar-toggle]');
+        
+        // Close if clicking outside sidebar and not on the toggle button
+        if (sidebar && !sidebar.contains(event.target) && 
+            sidebarToggle && !sidebarToggle.contains(event.target)) {
+          setIsSidebarOpen(false);
+        }
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape' && isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    if (isSidebarOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'hidden'; // Prevent body scroll when sidebar is open
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isSidebarOpen]);
+
   const navLinks = [
     { href: "#home", text: "Home", icon: "fas fa-home" },
     { href: "#about", text: "About", icon: "fas fa-user" },
     { href: "#skills", text: "Skills", icon: "fas fa-code" },
     { href: "#projects", text: "Projects", icon: "fas fa-folder-open" },
-    { href: "#contact", text: "Contact", icon: "fas fa-envelope" },
+    { href: "#journey", text: "Journey", icon: "fas fa-road" },
+    { href: "#awards", text: "Awards", icon: "fas fa-trophy" },
     { href: "#testimonials", text: "Testimonials", icon: "fas fa-star" },
+    { href: "#services", text: "Services", icon: "fas fa-concierge-bell" },
+    { href: "#contact", text: "Contact", icon: "fas fa-envelope" },
   ];
 
   return (
@@ -290,31 +384,10 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-2">
-              {navLinks.map((link, index) => (
-                <a 
-                  key={link.href}
-                  href={link.href} 
-                  className={`nav-link relative px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 transform hover:scale-105 group
-                              ${activeSection === link.href.slice(1)
-                                ? 'text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 active'
-                                : isScrolled || isMobileMenuOpen 
-                                  ? 'text-gray-700 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50' 
-                                  : 'text-gray-800 hover:text-indigo-600 hover:bg-white/30'
-                              }`}
-                  style={{ transitionDelay: `${index * 50}ms` }}
-                >
-                  <div className="flex items-center space-x-2">
-                    <i className={`${link.icon} text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300`}></i>
-                    <span>{link.text}</span>
-                  </div>
-                  <div className="active-indicator"></div>
-                </a>
-              ))}
-              
+            {/* Desktop Actions - Only Sidebar Toggle */}
+            <div className="hidden md:flex items-center space-x-4">
               {/* Theme Toggle Dropdown */}
-              <div className="relative ml-4">
+              <div className="relative">
                 <button
                   onClick={toggleThemeMenu}
                   className={`p-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-200
@@ -353,8 +426,9 @@ const Navbar = () => {
               
               {/* Sidebar Toggle */}
               <button
+                data-sidebar-toggle
                 onClick={toggleSidebar}
-                className={`ml-4 p-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-200
+                className={`p-3 rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-200
                             ${isScrolled || isMobileMenuOpen 
                               ? 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50' 
                               : 'text-gray-800 hover:text-indigo-600 hover:bg-white/30'
@@ -364,67 +438,30 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Opens Sidebar */}
             <div className="md:hidden flex items-center">
               <button 
-                onClick={toggleMobileMenu} 
+                data-sidebar-toggle
+                onClick={toggleSidebar} 
                 className={`relative p-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-indigo-200
                             ${isScrolled || isMobileMenuOpen 
                               ? 'text-gray-700 hover:text-indigo-600 hover:bg-indigo-50' 
                               : 'text-gray-800 hover:text-indigo-600 hover:bg-white/30'
                             }`}
-                aria-expanded={isMobileMenuOpen}
+                aria-expanded={isSidebarOpen}
               >
-                <div className={`menu-icon ${isMobileMenuOpen ? 'open' : ''}`}>
-                  <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
+                <div className={`menu-icon ${isSidebarOpen ? 'open' : ''}`}>
+                  <i className={`fas ${isSidebarOpen ? 'fa-times' : 'fa-bars'} text-xl`}></i>
                 </div>
               </button>
             </div>
           </div>
         </div>
         
-        {/* Mobile Menu */}
-        <div 
-          className={`md:hidden fixed top-0 left-0 w-full h-screen transition-all duration-500 ease-out
-                      ${isMobileMenuOpen 
-                        ? 'opacity-100 visible' 
-                        : 'opacity-0 invisible'
-                      } 
-                      bg-white/95 mobile-menu-backdrop flex flex-col justify-center items-center`}
-        >
-          <div className="space-y-6 text-center">
-            {navLinks.map((link, index) => (
-              <a 
-                key={link.href}
-                href={link.href} 
-                onClick={toggleMobileMenu} 
-                className={`mobile-nav-item block text-gray-800 hover:text-indigo-600 px-8 py-4 rounded-2xl text-2xl font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 group
-                            ${isMobileMenuOpen ? 'show' : ''}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="flex items-center justify-center space-x-3">
-                  <i className={`${link.icon} text-lg opacity-70 group-hover:opacity-100 transition-opacity duration-300`}></i>
-                  <span>{link.text}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-          
-          {/* Close button */}
-          <button 
-            onClick={toggleMobileMenu} 
-            className="absolute top-8 right-8 p-3 text-gray-500 hover:text-indigo-600 text-2xl rounded-full hover:bg-indigo-50 transition-all duration-300"
-          >
-            <i className="fas fa-times"></i>
-          </button>
-          
-          {/* Decorative elements */}
-          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full opacity-20 blur-xl"></div>
-          <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-pink-200 to-purple-200 rounded-full opacity-20 blur-xl"></div>
-        </div>
         
         {/* Enhanced Sidebar */}
         <div 
+          data-sidebar
           className={`fixed top-0 right-0 h-screen w-80 bg-white/95 backdrop-blur-xl shadow-2xl border-l border-gray-200 transition-transform duration-500 ease-out z-50
                       ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
@@ -565,6 +602,7 @@ const Navbar = () => {
           <div 
             className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300"
             onClick={toggleSidebar}
+            onTouchStart={toggleSidebar} // For mobile touch devices
           ></div>
         )}
       </nav>
