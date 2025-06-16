@@ -9,6 +9,7 @@ import TimelineJourney from './components/journey/TimelineJourney';
 import Testimonials from './components/testimonials/Testimonials';
 import Services from './components/services/Services'; // Added import for Services
 import Contact from './components/contact/Contact';
+import Awards from './components/awards/Awards';
 import Footer from './components/footer/Footer';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Skills />
         <Projects />
         <TimelineJourney />
+        <Awards />
         <Testimonials />
         <Services /> {/* Added Services component */}
         <Contact />
