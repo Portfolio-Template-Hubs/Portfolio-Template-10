@@ -125,6 +125,25 @@ const Hero = () => {
           transform: translateY(-2px);
         }
         
+        /* Dark theme glass cards - Enhanced with glow effects */
+        [data-theme="dark"] .glass-card {
+          background: rgba(0, 0, 0, 0.4);
+          border: 1px solid rgba(138, 43, 226, 0.5);
+          box-shadow: 
+            0 8px 32px rgba(138, 43, 226, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(15px);
+        }
+        
+        [data-theme="dark"] .glass-card:hover {
+          background: rgba(138, 43, 226, 0.15);
+          border-color: rgba(255, 105, 180, 0.7);
+          box-shadow: 
+            0 15px 60px rgba(138, 43, 226, 0.6),
+            0 0 30px rgba(255, 105, 180, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
         .animate-in {
           opacity: 0;
           transform: translateY(30px) scale(0.95);
@@ -153,6 +172,23 @@ const Hero = () => {
           );
           background-size: 400% 400%;
           animation: aurora 15s ease-in-out infinite;
+        }
+        
+        /* Dark theme aurora effect - Subtle on black background */
+        [data-theme="dark"] .aurora {
+          background: linear-gradient(
+            45deg,
+            rgba(138, 43, 226, 0.08) 0%,
+            rgba(255, 105, 180, 0.06) 20%,
+            rgba(103, 58, 183, 0.10) 40%,
+            rgba(233, 30, 99, 0.05) 60%,
+            rgba(156, 39, 176, 0.08) 80%,
+            rgba(75, 0, 130, 0.06) 100%
+          );
+          background-size: 600% 600%;
+          animation: aurora 12s ease-in-out infinite;
+          opacity: 0.4;
+          z-index: 2;
         }
         
         @keyframes aurora {
@@ -245,6 +281,14 @@ const Hero = () => {
           background-size: 50px 50px;
           animation: grid-move 20s linear infinite;
         }
+        
+        /* Dark theme decorative grid */
+        [data-theme="dark"] .decorative-grid {
+          background-image: 
+            linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 105, 180, 0.08) 1px, transparent 1px);
+          background-size: 50px 50px;
+        }
 
         @keyframes grid-move {
           0% { transform: translate(0, 0); }
@@ -260,20 +304,185 @@ const Hero = () => {
           40% { transform: translateY(-5px); }
           60% { transform: translateY(-3px); }
         }
+        
+        /* Hero section backgrounds */
+        .hero-section {
+          background: 
+            radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+            linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8fafc 100%);
+        }
+        
+        /* Dark theme hero background - Pure black with subtle colorful accents */
+        [data-theme="dark"] .hero-section {
+          background: #000000 !important;
+          position: relative;
+        }
+        
+        /* Add colorful accents as pseudo-elements */
+        [data-theme="dark"] .hero-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: 
+            radial-gradient(ellipse at 15% 25%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+            radial-gradient(ellipse at 85% 75%, rgba(255, 105, 180, 0.12) 0%, transparent 35%),
+            radial-gradient(ellipse at 50% 10%, rgba(103, 58, 183, 0.18) 0%, transparent 45%),
+            radial-gradient(ellipse at 20% 90%, rgba(233, 30, 99, 0.10) 0%, transparent 30%),
+            radial-gradient(ellipse at 70% 20%, rgba(156, 39, 176, 0.08) 0%, transparent 25%);
+          pointer-events: none;
+          z-index: 1;
+        }
+        
+        /* Dark theme text colors - Enhanced with amazing effects */
+        [data-theme="dark"] .hero-title {
+          color: #ffffff;
+          text-shadow: 
+            0 0 20px rgba(138, 43, 226, 0.6),
+            0 0 40px rgba(255, 105, 180, 0.4),
+            0 4px 30px rgba(138, 43, 226, 0.8);
+        }
+        
+        [data-theme="dark"] .hero-subtitle {
+          color: #e2e8f0;
+          text-shadow: 0 2px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        [data-theme="dark"] .hero-description {
+          color: #cbd5e1;
+          text-shadow: 0 1px 10px rgba(255, 105, 180, 0.2);
+        }
+        
+        /* Dark theme gradient text - Amazing animated gradient */
+        [data-theme="dark"] .dark-gradient-text {
+          background: linear-gradient(
+            135deg, 
+            #ff00ff 0%, 
+            #8b5cf6 15%, 
+            #00ffff 30%, 
+            #ec4899 45%, 
+            #ff6b6b 60%, 
+            #4ecdc4 75%, 
+            #45b7d1 90%, 
+            #ff00ff 100%
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          background-size: 400% 400%;
+          animation: gradient-shift 6s ease-in-out infinite;
+          filter: drop-shadow(0 0 15px rgba(138, 43, 226, 0.7));
+        }
+        
+        @keyframes gradient-shift {
+          0%, 100% { background-position: 0% 50%; }
+          25% { background-position: 100% 50%; }
+          50% { background-position: 200% 50%; }
+          75% { background-position: 300% 50%; }
+        }
+        
+        /* Dark theme skill tags - Glowing tech badges */
+        [data-theme="dark"] .skill-tag {
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(138, 43, 226, 0.6);
+          color: #ffffff;
+          box-shadow: 
+            0 4px 15px rgba(138, 43, 226, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .skill-tag:hover {
+          background: rgba(138, 43, 226, 0.3);
+          border-color: rgba(255, 105, 180, 0.8);
+          box-shadow: 
+            0 10px 40px rgba(138, 43, 226, 0.6),
+            0 0 25px rgba(255, 105, 180, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          color: #ffffff;
+        }
+        
+        /* Dark theme buttons - Premium glowing buttons */
+        [data-theme="dark"] .dark-primary-btn {
+          background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #ff6b6b 100%);
+          box-shadow: 
+            0 15px 35px rgba(139, 92, 246, 0.5),
+            0 5px 15px rgba(236, 72, 153, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .dark-primary-btn:hover {
+          background: linear-gradient(135deg, #a855f7 0%, #f472b6 50%, #ff8080 100%);
+          box-shadow: 
+            0 20px 50px rgba(139, 92, 246, 0.7),
+            0 0 40px rgba(236, 72, 153, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          transform: translateY(-3px) scale(1.05);
+        }
+        
+        [data-theme="dark"] .dark-secondary-btn {
+          background: rgba(0, 0, 0, 0.5);
+          border: 1px solid rgba(138, 43, 226, 0.7);
+          color: #ffffff;
+          box-shadow: 
+            0 8px 25px rgba(138, 43, 226, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .dark-secondary-btn:hover {
+          background: rgba(138, 43, 226, 0.2);
+          border-color: rgba(255, 105, 180, 0.8);
+          box-shadow: 
+            0 15px 40px rgba(138, 43, 226, 0.5),
+            0 0 30px rgba(255, 105, 180, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Dark theme social links - Glowing social icons */
+        [data-theme="dark"] .social-hover {
+          background: rgba(0, 0, 0, 0.4);
+          border: 1px solid rgba(138, 43, 226, 0.4);
+          color: #e2e8f0;
+          box-shadow: 
+            0 4px 15px rgba(138, 43, 226, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .social-hover:hover {
+          background: rgba(138, 43, 226, 0.25);
+          border-color: rgba(255, 105, 180, 0.6);
+          color: #ffffff;
+          box-shadow: 
+            0 10px 30px rgba(138, 43, 226, 0.6),
+            0 0 25px rgba(255, 105, 180, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Dark theme scroll indicator */
+        [data-theme="dark"] .scroll-indicator {
+          color: var(--text-muted);
+        }
+        
+        /* Dark theme highlight spans - Glowing text highlights */
+        [data-theme="dark"] .hero-highlight {
+          background: rgba(138, 43, 226, 0.3) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(255, 105, 180, 0.5);
+          box-shadow: 
+            0 0 15px rgba(138, 43, 226, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          text-shadow: 0 1px 10px rgba(138, 43, 226, 0.6);
+        }
       `}</style>
       
       <section 
         id="home" 
         ref={heroRef} 
-        className="min-h-screen flex items-center justify-center relative overflow-hidden md:py-20"
-        style={{
-          background: `
-            radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.04) 0%, transparent 50%),
-            radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
-            linear-gradient(135deg, #ffffff 0%, #fafbff 50%, #f8fafc 100%)
-          `
-        }}
+        className="min-h-screen flex items-center justify-center relative overflow-hidden md:py-20 hero-section"
       >
         {/* Decorative Grid */}
         <div className="decorative-grid absolute inset-0 opacity-30"></div>
@@ -306,7 +515,7 @@ const Hero = () => {
           }}
         />
         
-        <div className="container mx-auto px-6 text-center relative z-10 max-w-5xl">
+        <div className="container mx-auto px-6 text-center relative z-20 max-w-5xl">
           {/* Profile Image */}
           <div className={`floating-elements ${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '0.2s' }}>
             <div className="w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden gradient-border profile-glow magnetic-effect relative group">
@@ -321,16 +530,16 @@ const Hero = () => {
           
           {/* Main Heading */}
           <div className={`${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '0.4s' }}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-gray-900 text-shadow leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-gray-900 text-shadow leading-tight hero-title">
               Hi, I'm{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 relative">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 relative dark-gradient-text">
                 Alex Chen
               </span>
             </h1>
           </div>
           
           {/* Rotating Role Text */}
-          <div className={`text-xl md:text-2xl lg:text-3xl mb-6 font-medium text-gray-600 ${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '0.6s' }}>
+          <div className={`text-xl md:text-2xl lg:text-3xl mb-6 font-medium text-gray-600 hero-subtitle ${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '0.6s' }}>
             <span className="text-rotation" key={currentText}>
               {roles[currentText]}
             </span>
@@ -338,11 +547,11 @@ const Hero = () => {
           
           {/* Description */}
           <div className={`${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '0.8s' }}>
-            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-600 leading-relaxed">
-              I craft <span className="font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md">elegant</span> and{' '}
-              <span className="font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded-md">efficient</span> digital solutions 
+            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-gray-600 leading-relaxed hero-description">
+              I craft <span className="font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-md hero-highlight">elegant</span> and{' '}
+              <span className="font-semibold text-purple-600 bg-purple-50 px-2 py-1 rounded-md hero-highlight">efficient</span> digital solutions 
               that blend robust technology with user-centric design. Passionate about creating{' '}
-              <span className="font-semibold text-pink-600 bg-pink-50 px-2 py-1 rounded-md">intuitive</span> experiences 
+              <span className="font-semibold text-pink-600 bg-pink-50 px-2 py-1 rounded-md hero-highlight">intuitive</span> experiences 
               that make a difference.
             </p>
           </div>
@@ -351,7 +560,7 @@ const Hero = () => {
           <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 ${isLoaded ? 'animate-in' : ''}`} style={{ animationDelay: '1s' }}>
             <a 
               href="#projects" 
-              className="group btn-shine bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold text-base hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 magnetic-effect shadow-lg relative overflow-hidden"
+              className="group btn-shine bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold text-base hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 magnetic-effect shadow-lg relative overflow-hidden dark-primary-btn"
             >
               <div className="flex items-center space-x-2">
                 <span className="relative z-10">View My Work</span>
@@ -360,7 +569,7 @@ const Hero = () => {
             </a>
             <a 
               href="#contact" 
-              className="group btn-shine glass-card border border-indigo-200 text-indigo-700 px-8 py-3 rounded-full font-semibold text-base hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-300 magnetic-effect relative overflow-hidden"
+              className="group btn-shine glass-card border border-indigo-200 text-indigo-700 px-8 py-3 rounded-full font-semibold text-base hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-300 magnetic-effect relative overflow-hidden dark-secondary-btn"
             >
               <div className="flex items-center space-x-2">
                 <span className="relative z-10">Get In Touch</span>
