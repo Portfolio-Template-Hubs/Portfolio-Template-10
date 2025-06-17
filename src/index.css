@@ -59,6 +59,20 @@
   --skills-accent-violet: #8b5cf6;
   --skills-accent-purple: #a855f7;
   --skills-accent-pink: #ec4899;
+  
+  /* Projects section specific variables */
+  --projects-bg-dark: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%);
+  --projects-card-dark: rgba(0, 0, 0, 0.95);
+  --projects-border-dark: rgba(139, 92, 246, 0.3);
+  --projects-glow-dark: rgba(139, 92, 246, 0.3);
+  --projects-text-primary-dark: #ffffff;
+  --projects-text-secondary-dark: #e2e8f0;
+  --projects-accent-purple: #8b5cf6;
+  --projects-accent-cyan: #06b6d4;
+  --projects-accent-pink: #ec4899;
+  --projects-accent-violet: #7c3aed;
+  --projects-shadow-dark: 0 25px 50px -12px rgba(139, 92, 246, 0.4);
+  --projects-glow-effect: 0 0 40px rgba(139, 92, 246, 0.2);
 }
 
 body {
