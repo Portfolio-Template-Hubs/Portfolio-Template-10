@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Awards = () => {
+  const { theme, isDark } = useTheme();
   const [isVisible, setIsVisible] = useState(false);
   const [activeAward, setActiveAward] = useState(null);
   const sectionRef = useRef(null);
@@ -281,13 +283,15 @@ const Awards = () => {
       <section 
         ref={sectionRef}
         id="awards" 
-        className="py-20 relative overflow-hidden"
+        className="py-20 relative overflow-hidden transition-all duration-500"
         style={{
-          background: `
-            radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
-            linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)
-          `
+          background: isDark 
+            ? "linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%)"
+            : `
+              radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%)
+            `
         }}
       >
         {/* Dynamic Background Elements */}

@@ -550,4 +550,189 @@ body {
   background-color: #000000 !important;
 }
 
+/* Awards Dark Theme Styles */
+[data-theme="dark"] #awards {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%) !important;
+}
+
+/* Dark theme animated background elements */
+[data-theme="dark"] #awards .absolute.w-96,
+[data-theme="dark"] #awards .absolute.w-80 {
+  opacity: 0.6;
+}
+
+/* Dark theme section header badge */
+[data-theme="dark"] #awards .inline-flex {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  color: #e2e8f0 !important;
+  backdrop-filter: blur(20px);
+}
+
+/* Dark theme title text */
+[data-theme="dark"] #awards h2.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Dark theme description text */
+[data-theme="dark"] #awards p {
+  color: #cbd5e1 !important;
+}
+
+/* Dark theme stats cards */
+[data-theme="dark"] #awards .glass-morphism {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  backdrop-filter: blur(25px);
+}
+
+[data-theme="dark"] #awards .glass-morphism:hover {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Dark theme stats text */
+[data-theme="dark"] #awards .stats-counter {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] #awards .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] #awards .text-gray-900 {
+  color: #ffffff !important;
+}
+
+/* Dark theme award cards */
+[data-theme="dark"] #awards .award-card {
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  backdrop-filter: blur(25px);
+}
+
+[data-theme="dark"] #awards .award-card:hover {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2) !important;
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Dark theme award card text */
+[data-theme="dark"] #awards .award-card h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] #awards .award-card h3:hover,
+[data-theme="dark"] #awards .group:hover h3 {
+  color: #8b5cf6 !important;
+}
+
+[data-theme="dark"] #awards .award-card .text-indigo-600 {
+  color: #a855f7 !important;
+}
+
+[data-theme="dark"] #awards .award-card .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] #awards .award-card .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+/* Dark theme verification badge */
+[data-theme="dark"] #awards .verification-badge {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #4ade80 !important;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+[data-theme="dark"] #awards .verification-badge .text-green-500 {
+  color: #4ade80 !important;
+}
+
+/* Dark theme call to action */
+[data-theme="dark"] #awards .glass-morphism h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] #awards .glass-morphism p {
+  color: #cbd5e1 !important;
+}
+
+/* Dark theme modal */
+[data-theme="dark"] .award-modal {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  backdrop-filter: blur(25px);
+}
+
+[data-theme="dark"] .award-modal h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .award-modal p {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .award-modal .text-indigo-600 {
+  color: #a855f7 !important;
+}
+
+[data-theme="dark"] .award-modal .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .award-modal .text-gray-400 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .award-modal .text-green-600 {
+  color: #4ade80 !important;
+}
+
+/* Dark theme floating elements enhancement */
+[data-theme="dark"] #awards .floating-badge {
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+}
+
+/* Dark theme pulse ring effect */
+[data-theme="dark"] #awards .pulse-ring {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.3)) !important;
+}
+
+/* Dark theme award icon glow */
+[data-theme="dark"] #awards .award-icon {
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+}
+
+/* Dark theme category badge enhancement */
+[data-theme="dark"] #awards .category-badge {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Dark theme shine effect override */
+[data-theme="dark"] #awards .shine-effect::before {
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), transparent) !important;
+}
+
+/* Dark theme hover arrow */
+[data-theme="dark"] #awards .group:hover .fas.fa-arrow-right {
+  color: #8b5cf6 !important;
+}
+
+/* Dark theme section dividers */
+[data-theme="dark"] #awards .bg-gradient-to-r {
+  background: linear-gradient(90deg, #8b5cf6, #a855f7) !important;
+}
+
+/* Dark theme glowing effects */
+[data-theme="dark"] #awards .award-card .shine-effect:hover {
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.3) !important;
+}
+
 /* Remove duplicate body styles - use theme variables instead */
