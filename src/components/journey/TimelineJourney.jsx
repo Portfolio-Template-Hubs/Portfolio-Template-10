@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 import { 
   MapPin, Calendar, Award, Briefcase, GraduationCap, 
   Rocket, Star, TrendingUp, Code, Heart, Zap, 
@@ -7,6 +8,7 @@ import {
 } from 'lucide-react';
 
 const TimelineJourney = () => {
+  const { theme, isDark } = useTheme();
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(new Set());
   const timelineRef = useRef();
@@ -137,12 +139,15 @@ const TimelineJourney = () => {
   };
 
   return (
-    <section id='journey' className="py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+    <section id='journey' className="py-32 relative overflow-hidden transition-all duration-500"
+      style={{
+        background: isDark ? "linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%)" : "linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #e0f2fe 100%)"
+      }}>
       {/* Animated Background */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-green-400 to-blue-500 rounded-full filter blur-3xl animate-pulse delay-500"></div>
+      <div className="absolute inset-0 dark-journey-bg">
+        <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full filter blur-3xl animate-pulse dark-journey-glow-1"></div>
+        <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full filter blur-3xl animate-pulse delay-1000 dark-journey-glow-2"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-green-400 to-blue-500 rounded-full filter blur-3xl animate-pulse delay-500 dark-journey-glow-3"></div>
       </div>
 
       {/* Floating Elements */}

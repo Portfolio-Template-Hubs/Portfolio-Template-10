@@ -390,4 +390,164 @@ body {
   border-color: rgba(139, 92, 246, 0.4);
 }
 
+/* Journey Dark Theme Styles */
+[data-theme="dark"] .dark-journey-bg {
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .dark-journey-glow-1 {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(168, 85, 247, 0.4));
+  filter: blur(80px);
+}
+
+[data-theme="dark"] .dark-journey-glow-2 {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.5), rgba(139, 92, 246, 0.6));
+  filter: blur(80px);
+}
+
+[data-theme="dark"] .dark-journey-glow-3 {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.4), rgba(139, 92, 246, 0.5));
+  filter: blur(80px);
+}
+
+/* Journey timeline styles for dark theme */
+[data-theme="dark"] #journey {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%) !important;
+}
+
+/* Dark theme header badge */
+[data-theme="dark"] #journey .inline-flex {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  color: #e2e8f0 !important;
+  backdrop-filter: blur(20px);
+}
+
+/* Dark theme title text */
+[data-theme="dark"] #journey h2 .text-transparent:first-child {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #ec4899 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+[data-theme="dark"] #journey h2 .text-transparent:last-child {
+  background: linear-gradient(135deg, #ec4899 0%, #f472b6 50%, #8b5cf6 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Dark theme description text */
+[data-theme="dark"] #journey p {
+  color: #cbd5e1 !important;
+}
+
+/* Dark theme timeline cards */
+[data-theme="dark"] #journey .bg-blue-50,
+[data-theme="dark"] #journey .bg-purple-50,
+[data-theme="dark"] #journey .bg-green-50,
+[data-theme="dark"] #journey .bg-orange-50,
+[data-theme="dark"] #journey .bg-yellow-50,
+[data-theme="dark"] #journey .bg-indigo-50 {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  backdrop-filter: blur(25px);
+}
+
+/* Dark theme card hover effects */
+[data-theme="dark"] #journey .bg-blue-50:hover,
+[data-theme="dark"] #journey .bg-purple-50:hover,
+[data-theme="dark"] #journey .bg-green-50:hover,
+[data-theme="dark"] #journey .bg-orange-50:hover,
+[data-theme="dark"] #journey .bg-yellow-50:hover,
+[data-theme="dark"] #journey .bg-indigo-50:hover {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+  box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Dark theme card text colors */
+[data-theme="dark"] #journey h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] #journey h3:hover {
+  color: #8b5cf6 !important;
+}
+
+[data-theme="dark"] #journey .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] #journey .text-gray-700 {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] #journey .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] #journey .text-gray-800 {
+  color: #f1f5f9 !important;
+}
+
+/* Dark theme achievement badges */
+[data-theme="dark"] #journey .border-gray-200 {
+  border-color: rgba(139, 92, 246, 0.2) !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] #journey .border-gray-200:hover {
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  background: rgba(139, 92, 246, 0.1) !important;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Dark theme stats section */
+[data-theme="dark"] #journey .grid h3 {
+  color: transparent !important;
+}
+
+[data-theme="dark"] #journey .grid p {
+  color: #cbd5e1 !important;
+}
+
+/* Dark theme year and category badges */
+[data-theme="dark"] #journey .bg-white\/90 {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Dark theme glowing effects */
+[data-theme="dark"] #journey .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(139, 92, 246, 0.2) !important;
+}
+
+[data-theme="dark"] #journey .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Dark theme floating particles enhancement */
+[data-theme="dark"] #journey .animate-float {
+  background: linear-gradient(45deg, rgba(139, 92, 246, 0.8), rgba(236, 72, 153, 0.6)) !important;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6) !important;
+}
+
+/* Dark theme ring effects for active cards */
+[data-theme="dark"] #journey .ring-blue-500\/30 {
+  --tw-ring-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 0 0 calc(4px) var(--tw-ring-color), 0 25px 50px -12px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Dark theme timeline line enhancement */
+[data-theme="dark"] #journey .bg-gradient-to-b {
+  background: linear-gradient(180deg, #8b5cf6 0%, #a855f7 50%, #ec4899 100%) !important;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.6) !important;
+}
+
+/* Dark theme pure black background override */
+[data-theme="dark"] body {
+  background-color: #000000 !important;
+}
+
 /* Remove duplicate body styles - use theme variables instead */
