@@ -48,6 +48,17 @@
   --dark-navbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   --dark-sidebar-bg: rgba(10, 10, 15, 0.98);
   --dark-sidebar-blur: blur(25px);
+  
+  /* Skills section specific variables */
+  --skills-bg-dark: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%);
+  --skills-card-dark: rgba(0, 0, 0, 0.6);
+  --skills-border-dark: rgba(139, 92, 246, 0.3);
+  --skills-glow-dark: rgba(139, 92, 246, 0.2);
+  --skills-text-primary-dark: #ffffff;
+  --skills-text-secondary-dark: #d1d5db;
+  --skills-accent-violet: #8b5cf6;
+  --skills-accent-purple: #a855f7;
+  --skills-accent-pink: #ec4899;
 }
 
 body {
@@ -280,6 +291,89 @@ body {
 
 .mobile-menu.active {
   transform: translateX(0);
+}
+
+/* Dark theme specific animations and effects for Skills */
+[data-theme="dark"] .skills-dark-glow {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .skills-card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .skills-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .skills-floating-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: skillsParticleFloat 4s infinite ease-in-out;
+}
+
+@keyframes skillsParticleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.6; 
+  }
+  25% { 
+    transform: translateY(-30px) translateX(10px) rotate(90deg); 
+    opacity: 0.8; 
+  }
+  50% { 
+    transform: translateY(-60px) translateX(-5px) rotate(180deg); 
+    opacity: 1; 
+  }
+  75% { 
+    transform: translateY(-30px) translateX(-10px) rotate(270deg); 
+    opacity: 0.8; 
+  }
+}
+
+[data-theme="dark"] .skills-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .skills-progress-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .skills-progress-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: skillsProgressShine 2s infinite;
+}
+
+@keyframes skillsProgressShine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Dark theme glass morphism effects */
+[data-theme="dark"] .skills-glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="dark"] .skills-glass-dark:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(139, 92, 246, 0.4);
 }
 
 /* Remove duplicate body styles - use theme variables instead */
