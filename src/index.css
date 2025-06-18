@@ -735,4 +735,703 @@ body {
   box-shadow: 0 0 40px rgba(139, 92, 246, 0.3) !important;
 }
 
+/* Services Dark Theme Styles */
+[data-theme="dark"] {
+  /* Services specific variables */
+  --services-bg-dark: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%);
+  --services-card-dark: rgba(0, 0, 0, 0.8);
+  --services-border-dark: rgba(139, 92, 246, 0.2);
+  --services-glow-violet: rgba(139, 92, 246, 0.4);
+  --services-glow-purple: rgba(168, 85, 247, 0.4);
+  --services-glow-pink: rgba(236, 72, 153, 0.4);
+  --services-glow-cyan: rgba(6, 182, 212, 0.4);
+  --services-text-primary-dark: #ffffff;
+  --services-text-secondary-dark: #e2e8f0;
+  --services-accent-violet: #8b5cf6;
+  --services-accent-purple: #a855f7;
+  --services-accent-pink: #ec4899;
+  --services-accent-cyan: #06b6d4;
+}
+
+/* Services Dark theme card hover effects */
+[data-theme="dark"] .services-card-dark {
+  background: var(--services-card-dark);
+  border: 1px solid var(--services-border-dark);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .services-card-dark:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 25px 50px -12px var(--services-glow-violet), 0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+/* Services Dark theme animation delays */
+[data-theme="dark"] .animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+[data-theme="dark"] .animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+/* Services Dark theme particles */
+[data-theme="dark"] .services-floating-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(45deg, var(--services-accent-violet), var(--services-accent-pink));
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: servicesParticleFloat 6s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes servicesParticleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.7; 
+  }
+  25% { 
+    transform: translateY(-40px) translateX(20px) rotate(90deg); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateY(-80px) translateX(-10px) rotate(180deg); 
+    opacity: 0.8; 
+  }
+  75% { 
+    transform: translateY(-40px) translateX(-30px) rotate(270deg); 
+    opacity: 0.9; 
+  }
+}
+
+/* Services Dark theme text effects */
+[data-theme="dark"] .services-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Services Dark theme icon glow effects */
+[data-theme="dark"] .services-icon-violet {
+  filter: drop-shadow(0 0 20px var(--services-glow-violet));
+}
+
+[data-theme="dark"] .services-icon-purple {
+  filter: drop-shadow(0 0 20px var(--services-glow-purple));
+}
+
+[data-theme="dark"] .services-icon-pink {
+  filter: drop-shadow(0 0 20px var(--services-glow-pink));
+}
+
+[data-theme="dark"] .services-icon-cyan {
+  filter: drop-shadow(0 0 20px var(--services-glow-cyan));
+}
+
 /* Remove duplicate body styles - use theme variables instead */
+
+/* Testimonials Dark Theme Styles */
+[data-theme="dark"] {
+  /* Testimonials specific variables */
+  --testimonials-bg-dark: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%);
+  --testimonials-card-dark: rgba(0, 0, 0, 0.9);
+  --testimonials-border-dark: rgba(139, 92, 246, 0.3);
+  --testimonials-glow-violet: rgba(139, 92, 246, 0.6);
+  --testimonials-glow-purple: rgba(168, 85, 247, 0.5);
+  --testimonials-glow-pink: rgba(236, 72, 153, 0.5);
+  --testimonials-text-primary-dark: #ffffff;
+  --testimonials-text-secondary-dark: #e2e8f0;
+  --testimonials-accent-violet: #8b5cf6;
+  --testimonials-accent-purple: #a855f7;
+  --testimonials-accent-pink: #ec4899;
+}
+
+/* Testimonials Dark theme section background */
+[data-theme="dark"] .testimonials-dark-bg {
+  background: var(--testimonials-bg-dark);
+}
+
+/* Testimonials Dark theme background glows */
+[data-theme="dark"] .testimonials-dark-glow-1 {
+  background: linear-gradient(135deg, var(--testimonials-glow-violet), var(--testimonials-glow-purple));
+  filter: blur(80px);
+  animation: testimonialsGlow1 8s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .testimonials-dark-glow-2 {
+  background: linear-gradient(135deg, var(--testimonials-glow-pink), var(--testimonials-glow-violet));
+  filter: blur(80px);
+  animation: testimonialsGlow2 10s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .testimonials-dark-glow-3 {
+  background: linear-gradient(135deg, var(--testimonials-glow-purple), var(--testimonials-glow-pink));
+  filter: blur(60px);
+  animation: testimonialsGlow3 12s ease-in-out infinite alternate;
+}
+
+@keyframes testimonialsGlow1 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: translateX(20px) translateY(-10px) scale(1.1); 
+    opacity: 0.6; 
+  }
+}
+
+@keyframes testimonialsGlow2 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: translateX(-15px) translateY(15px) scale(1.05); 
+    opacity: 0.5; 
+  }
+}
+
+@keyframes testimonialsGlow3 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: translateX(10px) translateY(-20px) scale(0.95); 
+    opacity: 0.4; 
+  }
+}
+
+/* Testimonials Dark theme floating particles */
+[data-theme="dark"] .testimonials-floating-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(45deg, var(--testimonials-accent-violet), var(--testimonials-accent-pink));
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: testimonialsParticleFloat 6s infinite ease-in-out;
+  pointer-events: none;
+  box-shadow: 0 0 10px var(--testimonials-glow-violet);
+}
+
+@keyframes testimonialsParticleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.8; 
+  }
+  25% { 
+    transform: translateY(-40px) translateX(20px) rotate(90deg); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateY(-80px) translateX(-10px) rotate(180deg); 
+    opacity: 0.6; 
+  }
+  75% { 
+    transform: translateY(-40px) translateX(-30px) rotate(270deg); 
+    opacity: 0.9; 
+  }
+}
+
+/* Testimonials Dark theme title styles */
+[data-theme="dark"] .testimonials-title-dark {
+  color: var(--testimonials-text-primary-dark);
+}
+
+[data-theme="dark"] .testimonials-gradient-text-dark {
+  background: linear-gradient(135deg, #ffffff 0%, var(--testimonials-accent-purple) 30%, var(--testimonials-accent-violet) 70%, var(--testimonials-accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .testimonials-divider-dark {
+  background: linear-gradient(90deg, var(--testimonials-accent-violet), var(--testimonials-accent-purple), var(--testimonials-accent-pink));
+  box-shadow: 0 0 20px var(--testimonials-glow-violet);
+}
+
+[data-theme="dark"] .testimonials-description-dark {
+  color: var(--testimonials-text-secondary-dark);
+}
+
+/* Testimonials Dark theme card styles */
+[data-theme="dark"] .testimonials-card-dark {
+  background: var(--testimonials-card-dark);
+  border: 1px solid var(--testimonials-border-dark);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .testimonials-card-hover-dark:hover {
+  background: rgba(0, 0, 0, 0.95);
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px -12px var(--testimonials-glow-violet), 0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] .testimonials-card-glow-dark {
+  background: linear-gradient(135deg, var(--testimonials-glow-violet), var(--testimonials-glow-purple));
+  filter: blur(15px);
+}
+
+/* Testimonials Dark theme avatar styles */
+[data-theme="dark"] .testimonials-avatar-border-dark {
+  border-color: var(--testimonials-accent-violet);
+}
+
+[data-theme="dark"] .testimonials-avatar-glow-dark {
+  box-shadow: 0 0 20px var(--testimonials-glow-violet);
+}
+
+/* Testimonials Dark theme text styles */
+[data-theme="dark"] .testimonials-name-dark {
+  color: var(--testimonials-text-primary-dark);
+}
+
+[data-theme="dark"] .testimonials-name-hover-dark {
+  color: var(--testimonials-accent-violet) !important;
+}
+
+[data-theme="dark"] .testimonials-title-gradient-dark {
+  background: linear-gradient(135deg, var(--testimonials-accent-violet) 0%, var(--testimonials-accent-purple) 50%, var(--testimonials-accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .testimonials-quote-dark {
+  color: var(--testimonials-text-secondary-dark);
+}
+
+[data-theme="dark"] .testimonials-quote-mark-dark {
+  color: var(--testimonials-accent-violet) !important;
+}
+
+/* Testimonials Dark theme animations */
+[data-theme="dark"] .testimonials-card-dark {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] .testimonials-card-dark:hover {
+  animation: testimonialsCardPulse 2s infinite;
+}
+
+@keyframes testimonialsCardPulse {
+  0%, 100% {
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.4);
+  }
+}
+
+/* Testimonials Dark theme quote enhancement */
+[data-theme="dark"] .testimonials-quote-dark {
+  position: relative;
+}
+
+[data-theme="dark"] .testimonials-quote-dark::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--testimonials-accent-violet), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .testimonials-card-dark:hover .testimonials-quote-dark::after {
+  opacity: 1;
+}
+
+/* Contact Dark Theme Styles */
+[data-theme="dark"] {
+  /* Contact specific variables */
+  --contact-bg-dark: linear-gradient(135deg, #000000 0%, #0a0a0f 25%, #111121 50%, #0a0a0f 75%, #000000 100%);
+  --contact-card-dark: rgba(0, 0, 0, 0.95);
+  --contact-border-dark: rgba(139, 92, 246, 0.3);
+  --contact-glow-violet: rgba(139, 92, 246, 0.6);
+  --contact-glow-purple: rgba(168, 85, 247, 0.5);
+  --contact-glow-pink: rgba(236, 72, 153, 0.5);
+  --contact-glow-cyan: rgba(6, 182, 212, 0.5);
+  --contact-text-primary-dark: #ffffff;
+  --contact-text-secondary-dark: #e2e8f0;
+  --contact-accent-violet: #8b5cf6;
+  --contact-accent-purple: #a855f7;
+  --contact-accent-pink: #ec4899;
+  --contact-accent-cyan: #06b6d4;
+}
+
+/* Contact Dark theme section background */
+[data-theme="dark"] .contact-dark-bg {
+  background: var(--contact-bg-dark) !important;
+}
+
+/* Contact Dark theme background glows */
+[data-theme="dark"] .contact-dark-glow-1 {
+  background: linear-gradient(135deg, var(--contact-glow-violet), var(--contact-glow-purple));
+  filter: blur(80px);
+  animation: contactGlow1 8s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .contact-dark-glow-2 {
+  background: linear-gradient(135deg, var(--contact-glow-pink), var(--contact-glow-violet));
+  filter: blur(80px);
+  animation: contactGlow2 10s ease-in-out infinite alternate;
+}
+
+[data-theme="dark"] .contact-dark-glow-3 {
+  background: linear-gradient(135deg, var(--contact-glow-cyan), var(--contact-glow-purple));
+  filter: blur(60px);
+  animation: contactGlow3 12s ease-in-out infinite alternate;
+}
+
+@keyframes contactGlow1 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: translateX(30px) translateY(-20px) scale(1.1); 
+    opacity: 0.7; 
+  }
+}
+
+@keyframes contactGlow2 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.5; 
+  }
+  50% { 
+    transform: translateX(-25px) translateY(25px) scale(1.05); 
+    opacity: 0.6; 
+  }
+}
+
+@keyframes contactGlow3 {
+  0%, 100% { 
+    transform: translateX(0px) translateY(0px) scale(1); 
+    opacity: 0.4; 
+  }
+  50% { 
+    transform: translateX(20px) translateY(-30px) scale(0.95); 
+    opacity: 0.5; 
+  }
+}
+
+/* Contact Dark theme floating particles */
+[data-theme="dark"] .contact-floating-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(45deg, var(--contact-accent-violet), var(--contact-accent-pink));
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: contactParticleFloat 6s infinite ease-in-out;
+  pointer-events: none;
+  box-shadow: 0 0 10px var(--contact-glow-violet);
+}
+
+@keyframes contactParticleFloat {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) rotate(0deg); 
+    opacity: 0.8; 
+  }
+  25% { 
+    transform: translateY(-50px) translateX(30px) rotate(90deg); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: translateY(-100px) translateX(-20px) rotate(180deg); 
+    opacity: 0.6; 
+  }
+  75% { 
+    transform: translateY(-50px) translateX(-40px) rotate(270deg); 
+    opacity: 0.9; 
+  }
+}
+
+/* Contact Dark theme overlays */
+[data-theme="dark"] .contact-dark-overlay {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%);
+}
+
+[data-theme="dark"] .contact-dark-top-border {
+  background: linear-gradient(90deg, var(--contact-accent-violet), var(--contact-accent-purple), var(--contact-accent-pink), var(--contact-accent-cyan));
+  box-shadow: 0 0 20px var(--contact-glow-violet);
+}
+
+/* Contact Dark theme text styles */
+[data-theme="dark"] .contact-greeting-dark {
+  color: var(--contact-text-secondary-dark);
+}
+
+[data-theme="dark"] .contact-title-dark {
+  color: var(--contact-text-primary-dark);
+}
+
+[data-theme="dark"] .contact-gradient-text-dark {
+  background: linear-gradient(135deg, #ffffff 0%, var(--contact-accent-purple) 20%, var(--contact-accent-violet) 40%, var(--contact-accent-pink) 60%, var(--contact-accent-cyan) 80%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: contactTextShine 3s ease-in-out infinite;
+}
+
+@keyframes contactTextShine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+[data-theme="dark"] .contact-title-underline-dark {
+  background: linear-gradient(90deg, var(--contact-accent-violet), var(--contact-accent-purple), var(--contact-accent-pink), var(--contact-accent-cyan));
+  box-shadow: 0 0 20px var(--contact-glow-violet);
+}
+
+[data-theme="dark"] .contact-description-primary-dark {
+  color: var(--contact-text-secondary-dark);
+}
+
+[data-theme="dark"] .contact-description-secondary-dark {
+  color: #cbd5e1;
+}
+
+/* Contact Dark theme stats cards */
+[data-theme="dark"] .contact-stat-card-dark {
+  background: var(--contact-card-dark);
+  border: 1px solid var(--contact-border-dark);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .contact-stat-card-dark:hover {
+  background: rgba(0, 0, 0, 0.98);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 25px 50px -12px var(--contact-glow-violet), 0 0 40px rgba(139, 92, 246, 0.3);
+  transform: scale(1.05) translateY(-8px);
+}
+
+[data-theme="dark"] .contact-stat-number-dark {
+  background: linear-gradient(135deg, var(--contact-accent-violet) 0%, var(--contact-accent-purple) 50%, var(--contact-accent-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="dark"] .contact-stat-label-dark {
+  color: var(--contact-text-secondary-dark);
+}
+
+/* Contact Dark theme form container */
+[data-theme="dark"] .contact-form-container-dark {
+  background: var(--contact-card-dark);
+  border: 1px solid var(--contact-border-dark);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .contact-form-container-dark:hover {
+  background: rgba(0, 0, 0, 0.98);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7), 0 0 60px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="dark"] .contact-form-header-dark {
+  background: linear-gradient(90deg, var(--contact-accent-violet), var(--contact-accent-purple), var(--contact-accent-pink), var(--contact-accent-cyan));
+  box-shadow: 0 0 20px var(--contact-glow-violet);
+}
+
+[data-theme="dark"] .contact-form-glow-1 {
+  background: linear-gradient(135deg, var(--contact-glow-violet), var(--contact-glow-purple));
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .contact-form-glow-2 {
+  background: linear-gradient(135deg, var(--contact-glow-pink), var(--contact-glow-cyan));
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+/* Contact Dark theme form fields - override light theme styles */
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 2px solid rgba(139, 92, 246, 0.3) !important;
+  color: var(--contact-text-primary-dark) !important;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: rgba(226, 232, 240, 0.6) !important;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: var(--contact-accent-violet) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2), 0 0 30px rgba(139, 92, 246, 0.3) !important;
+  outline: none !important;
+}
+
+/* Contact Dark theme form labels */
+[data-theme="dark"] form label {
+  color: var(--contact-text-secondary-dark) !important;
+}
+
+/* Contact Dark theme form header */
+[data-theme="dark"] form h3 {
+  color: var(--contact-text-primary-dark) !important;
+  background: linear-gradient(135deg, var(--contact-accent-violet) 0%, var(--contact-accent-purple) 50%, var(--contact-accent-pink) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="dark"] form p {
+  color: var(--contact-text-secondary-dark) !important;
+}
+
+/* Contact Dark theme submit button enhancement */
+[data-theme="dark"] form button[type="submit"] {
+  background: linear-gradient(135deg, var(--contact-accent-violet) 0%, var(--contact-accent-purple) 25%, var(--contact-accent-pink) 50%, var(--contact-accent-cyan) 75%, var(--contact-accent-violet) 100%) !important;
+  background-size: 200% 200% !important;
+  animation: contactButtonGradient 3s ease infinite !important;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2) !important;
+}
+
+[data-theme="dark"] form button[type="submit"]:hover {
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.4) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+
+@keyframes contactButtonGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Contact Dark theme success message */
+[data-theme="dark"] .text-4xl {
+  color: var(--contact-text-primary-dark) !important;
+}
+
+[data-theme="dark"] .text-xl {
+  color: var(--contact-text-secondary-dark) !important;
+}
+
+/* Contact Dark theme contact info cards - Right side */
+[data-theme="dark"] .lg\:col-span-5 > div {
+  background: var(--contact-card-dark) !important;
+  border: 1px solid var(--contact-border-dark) !important;
+  backdrop-filter: blur(25px);
+}
+
+[data-theme="dark"] .lg\:col-span-5 > div:hover {
+  background: rgba(0, 0, 0, 0.98) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 25px 50px -12px var(--contact-glow-violet), 0 0 40px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Contact info card headers */
+[data-theme="dark"] .lg\:col-span-5 h3 {
+  color: var(--contact-text-primary-dark) !important;
+  background: linear-gradient(135deg, var(--contact-accent-violet) 0%, var(--contact-accent-purple) 50%, var(--contact-accent-pink) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Contact info card text */
+[data-theme="dark"] .lg\:col-span-5 h4 {
+  color: var(--contact-text-primary-dark) !important;
+}
+
+[data-theme="dark"] .lg\:col-span-5 p,
+[data-theme="dark"] .lg\:col-span-5 a {
+  color: var(--contact-text-secondary-dark) !important;
+}
+
+[data-theme="dark"] .lg\:col-span-5 a:hover {
+  color: var(--contact-accent-violet) !important;
+}
+
+/* Contact info card header borders */
+[data-theme="dark"] .lg\:col-span-5 > div > div:first-child {
+  background: linear-gradient(90deg, var(--contact-accent-violet), var(--contact-accent-purple), var(--contact-accent-pink)) !important;
+}
+
+/* Contact Dark theme social icons enhancement */
+[data-theme="dark"] .lg\:col-span-5 .grid a {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .lg\:col-span-5 .grid a:hover {
+  transform: scale(1.05) translateY(-8px) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 92, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .lg\:col-span-5 .grid a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+[data-theme="dark"] .lg\:col-span-5 .grid a:hover::before {
+  left: 100%;
+}
+
+/* Contact Dark theme decorative elements */
+[data-theme="dark"] .lg\:col-span-5 > div > div:last-child {
+  background: linear-gradient(135deg, var(--contact-glow-pink), var(--contact-glow-cyan)) !important;
+  filter: blur(40px);
+  opacity: 0.4;
+}
+
+/* Contact Dark theme animations enhancement */
+[data-theme="dark"] .contact-dark-bg {
+  position: relative;
+}
+
+[data-theme="dark"] .contact-dark-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contact Dark theme responsive form adjustments */
+@media (max-width: 768px) {
+  [data-theme="dark"] .contact-form-container-dark {
+    background: rgba(0, 0, 0, 0.98);
+  }
+  
+  [data-theme="dark"] .contact-stat-card-dark {
+    background: rgba(0, 0, 0, 0.98);
+  }
+}
